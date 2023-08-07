@@ -8,6 +8,7 @@ import mongoose from 'mongoose'
 
 import studentsRoute from './routes/students.js';
 import horsesRoute from './routes/horses.js';
+import teachersRoute from './routes/teachers.js';
 
 // import cookieParser from 'cookie-parser';
 // import cors from 'cors'
@@ -39,9 +40,10 @@ mongoose.connection.on("connected", ()=>{
 app.use(express.json())
 
 // app.use('/api/auth', authRoute);
-// app.use('/api/users', usersRoute);
+app.use('/api/teachers', teachersRoute)
 app.use('/api/horses', horsesRoute)
 app.use('/api/students', studentsRoute);
+
 
 app.use((err, req, res, next)=> {
     const errorStatus = err.status || 500
