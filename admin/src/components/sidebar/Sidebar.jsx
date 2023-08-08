@@ -13,7 +13,9 @@ const Sidebar = () => {
             <hr></hr>
             <div className='center'>
                 <ul>
-                    <li>Teachers</li>
+                    <Link to="/teachers">
+                        <li>Teachers</li>
+                    </Link>
                     <li>Horses</li>
                     <li>Students</li>
                     <li>Schedule</li>
