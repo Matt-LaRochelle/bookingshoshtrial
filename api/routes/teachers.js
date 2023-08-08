@@ -1,5 +1,5 @@
 import express from 'express'
-import { createTeacher } from '../controllers/teacher.js' 
+import { createTeacher, getTeachers } from '../controllers/teacher.js' 
 //import { verifyAdmin } from a utils function
 
 const router = express.Router();
@@ -16,8 +16,8 @@ router.post('/teacher', createTeacher)
 
 
 //Get
-
 //Get all
+router.get('/', getTeachers)
 //This will show all the teachers that are available on a specific day
 
 export default router

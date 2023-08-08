@@ -20,3 +20,11 @@ export const createTeacher = async (req, res, next) => {
 //get teacher
 
 //get teachers plural
+export const getTeachers = async (req, res, next) => {
+    try {
+        const teachers = await Teacher.find();
+        res.status(200).json(teachers);
+    } catch (err) {
+        next (err)
+    }
+}

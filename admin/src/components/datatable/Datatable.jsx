@@ -11,10 +11,12 @@ const Datatable = ({columns}) => {
 
     const [list, setList] = useState();
 
-    const { data, loading, error } = useFetch(`/${path}`); 
+    const { data, loading, error } = useFetch('/teachers'); 
 
     useEffect(() => {
         setList(data)
+        console.log("list:" + list)
+        console.log("data:" + JSON.stringify(data))
     }, [data])
 
     return (
@@ -26,8 +28,8 @@ const Datatable = ({columns}) => {
                 </Link>
             </div>
             <div>
-                <div>{list}</div>
-                <div>{columns}</div>
+                {data.data}
+                {/* <div>{columns}</div> */}
             </div>
         </div>
     )
