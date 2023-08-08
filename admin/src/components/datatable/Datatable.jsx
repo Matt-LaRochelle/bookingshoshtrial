@@ -2,6 +2,8 @@ import "./datatable.scss";
 import { Link, useLocation } from 'react-router-dom'
 import useFetch from "../../hooks/useFetch";
 import { useState, useEffect } from 'react'
+import { DataGrid } from "@mui/x-data-grid";
+import axios from 'axios'
 
 
 const Datatable = ({columns}) => {
@@ -15,9 +17,42 @@ const Datatable = ({columns}) => {
 
     useEffect(() => {
         setList(data)
-        console.log("list:" + list)
-        console.log("data:" + JSON.stringify(data))
+        console.log("data:", data)
+        // console.log("data:" + JSON.stringify(data))
     }, [data])
+
+    // const handleDelete = async (id) => {
+    //     try {
+    //       // This path must be dynamic as well
+    //       await axios.delete(`/${path}/${id}`)
+    //       setList(list.filter((item) => item._id !== id));
+    //     } catch (err) {
+    
+    //     }
+    //   };
+
+    // const actionColumn = [
+    //     {
+    //       field: "action",
+    //       headerName: "Action",
+    //       width: 200,
+    //       renderCell: (params) => {
+    //         return (
+    //           <div className="cellAction">
+    //             <Link to="/users/test" style={{ textDecoration: "none" }}>
+    //               <div className="viewButton">View</div>
+    //             </Link>
+    //             <div
+    //               className="deleteButton"
+    //               onClick={() => handleDelete(params.row._id)}
+    //             >
+    //               Delete
+    //             </div>
+    //           </div>
+    //         );
+    //       },
+    //     },
+    //   ];
 
     return (
         <div className="datatable">
@@ -28,8 +63,20 @@ const Datatable = ({columns}) => {
                 </Link>
             </div>
             <div>
-                {data.data}
-                {/* <div>{columns}</div> */}
+                {
+                    list ? 
+                    <DataGrid
+                        className="datagrid"
+                        rows={list}
+                        columns={columns}
+                        pageSize={9}
+                        rowsPerPageOptions={[9]}
+                        checkboxSelection
+                        getRowId={row=>row._id}
+                    />
+                    : <p>"Loading..."</p>
+                }
+                {error && <div>{error}</div>}
             </div>
         </div>
     )
