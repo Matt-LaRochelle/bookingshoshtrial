@@ -31,6 +31,8 @@ const Datatable = ({columns}) => {
         }
       };
 
+    const single = `/${path}/test`
+
     const actionColumn = [
         {
           field: "action",
@@ -39,7 +41,7 @@ const Datatable = ({columns}) => {
           renderCell: (params) => {
             return (
               <div className="cellAction">
-                <Link to="/users/test" style={{ textDecoration: "none" }}>
+                <Link to={single} style={{ textDecoration: "none" }}>
                   <div className="viewButton">View</div>
                 </Link>
                 <div
