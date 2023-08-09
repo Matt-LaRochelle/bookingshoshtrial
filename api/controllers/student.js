@@ -36,3 +36,11 @@ export const getStudent = async (req, res, next) => {
 }
 
 //getStudents plural
+export const getStudents = async (req, res, next) => {
+    try {
+        const students = await Student.find();
+        res.status(200).json(students);
+    } catch (err) {
+        next (err)
+    }
+}

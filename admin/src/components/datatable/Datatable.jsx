@@ -13,7 +13,7 @@ const Datatable = ({columns}) => {
 
     const [list, setList] = useState();
 
-    const { data, loading, error } = useFetch('/teachers'); 
+    const { data, loading, error } = useFetch(`/${path}`); 
 
     useEffect(() => {
         setList(data)
@@ -21,38 +21,38 @@ const Datatable = ({columns}) => {
         // console.log("data:" + JSON.stringify(data))
     }, [data])
 
-    // const handleDelete = async (id) => {
-    //     try {
-    //       // This path must be dynamic as well
-    //       await axios.delete(`/${path}/${id}`)
-    //       setList(list.filter((item) => item._id !== id));
-    //     } catch (err) {
+    const handleDelete = async (id) => {
+        try {
+          // This path must be dynamic as well
+          await axios.delete(`/${path}/${id}`)
+          setList(list.filter((item) => item._id !== id));
+        } catch (err) {
     
-    //     }
-    //   };
+        }
+      };
 
-    // const actionColumn = [
-    //     {
-    //       field: "action",
-    //       headerName: "Action",
-    //       width: 200,
-    //       renderCell: (params) => {
-    //         return (
-    //           <div className="cellAction">
-    //             <Link to="/users/test" style={{ textDecoration: "none" }}>
-    //               <div className="viewButton">View</div>
-    //             </Link>
-    //             <div
-    //               className="deleteButton"
-    //               onClick={() => handleDelete(params.row._id)}
-    //             >
-    //               Delete
-    //             </div>
-    //           </div>
-    //         );
-    //       },
-    //     },
-    //   ];
+    const actionColumn = [
+        {
+          field: "action",
+          headerName: "Action",
+          width: 200,
+          renderCell: (params) => {
+            return (
+              <div className="cellAction">
+                <Link to="/users/test" style={{ textDecoration: "none" }}>
+                  <div className="viewButton">View</div>
+                </Link>
+                <div
+                  className="deleteButton"
+                  onClick={() => handleDelete(params.row._id)}
+                >
+                  Delete
+                </div>
+              </div>
+            );
+          },
+        },
+      ];
 
     return (
         <div className="datatable">
@@ -68,7 +68,7 @@ const Datatable = ({columns}) => {
                     <DataGrid
                         className="datagrid"
                         rows={list}
-                        columns={columns}
+                        columns={columns.concat(actionColumn)}
                         pageSize={9}
                         rowsPerPageOptions={[9]}
                         checkboxSelection

@@ -20,3 +20,11 @@ export const createHorse = async (req, res, next) => {
 //get horse
 
 //get horses plural
+export const getHorses = async (req, res, next) => {
+    try {
+        const horses = await Horse.find();
+        res.status(200).json(horses);
+    } catch (err) {
+        next (err)
+    }
+}

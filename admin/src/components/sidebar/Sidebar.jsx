@@ -13,11 +13,15 @@ const Sidebar = () => {
             <hr></hr>
             <div className='center'>
                 <ul>
-                    <Link to="/teachers">
+                    <Link to="/teachers" style={{textDecoration: "none"}}>
                         <li>Teachers</li>
                     </Link>
-                    <li>Horses</li>
-                    <li>Students</li>
+                    <Link to="/horses" style={{textDecoration: "none"}}>
+                        <li>Horses</li>
+                    </Link>
+                    <Link to="/students" style={{textDecoration: "none"}}>
+                        <li>Students</li>
+                    </Link>
                     <li>Schedule</li>
                     <li>Income</li>
                     <li>Statistics</li>

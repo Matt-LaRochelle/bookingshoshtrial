@@ -1,5 +1,5 @@
 import express from 'express'
-import { createStudent, getStudent } from '../controllers/student.js' 
+import { createStudent, getStudent, getStudents } from '../controllers/student.js' 
 //import { verifyAdmin } from a utils function
 
 const router = express.Router();
@@ -22,5 +22,6 @@ router.post('/login', getStudent)
 
 //Get all
 //Admin only
+router.get('/', getStudents)
 
 export default router

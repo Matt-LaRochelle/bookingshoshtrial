@@ -1,5 +1,5 @@
 import express from 'express'
-import { createHorse } from '../controllers/horse.js' 
+import { createHorse, getHorses } from '../controllers/horse.js' 
 //import { verifyAdmin } from a utils function
 
 const router = express.Router();
@@ -19,5 +19,6 @@ router.post('/horse', createHorse)
 
 //Get all
 //This will show all the horses that are available on a specific day
+router.get('/', getHorses)
 
 export default router

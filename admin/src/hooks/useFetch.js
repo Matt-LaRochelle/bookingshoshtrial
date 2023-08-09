@@ -10,7 +10,7 @@ const useFetch = (url) => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const res = await axios.get("http://localhost:8800/api/teachers")
+                const res = await axios.get(url)
                 setData(res.data);
                 console.log("from the fetch" + JSON.stringify(res.data[0].name))
             } catch (err) {
