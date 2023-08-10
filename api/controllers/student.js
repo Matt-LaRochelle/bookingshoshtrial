@@ -1,6 +1,8 @@
 import Student from '../models/Student.js'
 import { createError } from '../utils/error.js'
 
+
+//CREATE
 export const createStudent = async (req, res, next) => {
     const newStudent = new Student(req.body)
 
@@ -13,11 +15,13 @@ export const createStudent = async (req, res, next) => {
     }
 }
 
-//update
+//UPDATE
 
-//delete
 
-//login student
+//DELETE
+
+
+//LOGIN student
 export const loginStudent = async (req, res, next) => {
     const {firstName, email} = req.body 
 
@@ -32,7 +36,6 @@ export const loginStudent = async (req, res, next) => {
 
     // Return the student's information
     res.status(200).json(foundStudent)
-
 }
 
 //GET student
@@ -46,7 +49,7 @@ export const getStudent = async (req, res, next) => {
     }
 }
 
-//getStudents plural
+//GET Students plural
 export const getStudents = async (req, res, next) => {
     try {
         const students = await Student.find();

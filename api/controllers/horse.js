@@ -1,6 +1,7 @@
 import Horse from '../models/Horse.js'
 import { createError } from '../utils/error.js'
 
+//CREATE
 export const createHorse = async (req, res, next) => {
     const newHorse = new Horse(req.body)
 
@@ -13,11 +14,12 @@ export const createHorse = async (req, res, next) => {
     }
 }
 
-//update
+//UPDATE
 
-//delete
 
-//get horse
+//DELETE
+
+//GET horse
 export const getHorse = async (req, res, next) => {
     const id = req.params.id
     try {
@@ -28,7 +30,7 @@ export const getHorse = async (req, res, next) => {
     }
 }
 
-//get horses plural
+//GET horses plural
 export const getHorses = async (req, res, next) => {
     try {
         const horses = await Horse.find();

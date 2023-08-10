@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/student', createStudent)
 
 //Update
-//Admin only
+//Admin only - WELL STUDENTS SHOULD  be able to update their information as well
 
 //Delete
 //Admin only

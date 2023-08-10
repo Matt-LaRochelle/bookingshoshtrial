@@ -1,6 +1,7 @@
 import Teacher from '../models/Teacher.js'
 import { createError } from '../utils/error.js'
 
+//CREATE
 export const createTeacher = async (req, res, next) => {
     const newTeacher = new Teacher(req.body)
 
@@ -13,11 +14,11 @@ export const createTeacher = async (req, res, next) => {
     }
 }
 
-//update
+//UPDATE
 
-//delete
+//DELETE
 
-//get teacher
+//GET teacher
 export const getTeacher = async (req, res, next) => {
     const id = req.params.id
     try {
@@ -28,7 +29,7 @@ export const getTeacher = async (req, res, next) => {
     }
 }
 
-//get teachers plural
+//GET teachers plural
 export const getTeachers = async (req, res, next) => {
     try {
         const teachers = await Teacher.find();
