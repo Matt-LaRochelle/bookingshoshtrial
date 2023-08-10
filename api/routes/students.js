@@ -1,5 +1,5 @@
 import express from 'express'
-import { createStudent, getStudent, getStudents } from '../controllers/student.js' 
+import { createStudent, loginStudent, getStudent, getStudents } from '../controllers/student.js' 
 //import { verifyAdmin } from a utils function
 
 const router = express.Router();
@@ -15,10 +15,11 @@ router.post('/student', createStudent)
 
 
 //For logging in from client side
-router.post('/login', getStudent)
+router.post('/login', loginStudent)
 
 //Get
 //Also get for Admin
+router.get('/:id', getStudent)
 
 //Get all
 //Admin only

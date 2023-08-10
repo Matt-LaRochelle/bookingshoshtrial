@@ -18,6 +18,15 @@ export const createHorse = async (req, res, next) => {
 //delete
 
 //get horse
+export const getHorse = async (req, res, next) => {
+    const id = req.params.id
+    try {
+        const horse = await Horse.findById(id);
+        res.status(200).json(horse)
+    } catch (err) {
+        next (err)
+    }
+}
 
 //get horses plural
 export const getHorses = async (req, res, next) => {

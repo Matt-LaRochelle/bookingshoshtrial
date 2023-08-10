@@ -17,8 +17,8 @@ export const createStudent = async (req, res, next) => {
 
 //delete
 
-//getStudent
-export const getStudent = async (req, res, next) => {
+//login student
+export const loginStudent = async (req, res, next) => {
     const {firstName, email} = req.body 
 
     // Check if student is already in the DB
@@ -33,6 +33,17 @@ export const getStudent = async (req, res, next) => {
     // Return the student's information
     res.status(200).json(foundStudent)
 
+}
+
+//GET student
+export const getStudent = async (req, res, next) => {
+    const id = req.params.id
+    try {
+        const student = await Student.findById(id);
+        res.status(200).json(student)
+    } catch (err) {
+        next (err)
+    }
 }
 
 //getStudents plural
