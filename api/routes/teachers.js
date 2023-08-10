@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Create
 // Admin only
-router.post('/teacher', createTeacher)
+router.post('/', createTeacher)
 
 //Update
 //Admin only

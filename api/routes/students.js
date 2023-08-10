@@ -5,7 +5,7 @@ import { createStudent, loginStudent, getStudent, getStudents } from '../control
 const router = express.Router();
 
 // Create
-router.post('/student', createStudent)
+router.post('/', createStudent)
 
 //Update
 //Admin only - WELL STUDENTS SHOULD  be able to update their information as well
