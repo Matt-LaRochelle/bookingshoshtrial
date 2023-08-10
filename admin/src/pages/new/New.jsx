@@ -14,13 +14,14 @@ const New = () => {
         console.log(newObject)
     };
 
+    console.log(path)
 
 
     const handleClick = async (e) => {
         e.preventDefault()
         console.log(newObject)
         try {
-            await axios.post(`http://localhost:8800/api/${path}`, JSON.stringify(newObject))
+            await axios.post(`http://localhost:8800/api/${path}`, newObject)
             console.log("success!")
         } catch (err) {
             console.log(err)

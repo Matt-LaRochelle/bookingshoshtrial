@@ -3,7 +3,9 @@ import { createError } from '../utils/error.js'
 
 //CREATE
 export const createHorse = async (req, res, next) => {
+    console.log("step 3")
     const newHorse = new Horse(req.body)
+    console.log(newHorse)
 
     // Save a new horse document here
     try {
