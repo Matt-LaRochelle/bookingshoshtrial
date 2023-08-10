@@ -1,5 +1,5 @@
 import express from 'express'
-import { createHorse, getHorses, getHorse } from '../controllers/horse.js' 
+import { createHorse, getHorses } from '../controllers/horse.js' 
 //import { verifyAdmin } from a utils function
 
 const router = express.Router();
@@ -16,7 +16,7 @@ router.post('/horse', createHorse)
 
 
 //Get
-router.get('/test/:id', getHorse)
+// router.get('/test/:id', getHorse)
 
 //Get all
 //This will show all the horses that are available on a specific day

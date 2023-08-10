@@ -11,7 +11,7 @@ import horsesRoute from './routes/horses.js';
 import teachersRoute from './routes/teachers.js';
 
 // import cookieParser from 'cookie-parser';
-import cors from 'cors'
+// import cors from 'cors'
 
 
 
@@ -35,7 +35,7 @@ mongoose.connection.on("connected", ()=>{
 })
 
 // middlewares
-app.use(cors())
+// app.use(cors())
 // app.use(cookieParser())
 app.use(express.json())
 
