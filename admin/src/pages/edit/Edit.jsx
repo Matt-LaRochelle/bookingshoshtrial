@@ -1,74 +1,67 @@
-import './new.scss'
-import Sidebar from '../../components/sidebar/Sidebar'
-import { useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios'
+import './edit.scss'
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
+import Sidebar from '../../components/sidebar/Sidebar'
 
-const New = () => {
+const Edit = () => {
     const location = useLocation();
     const path = location.pathname.split("/")[1];
+    const id = location.pathname.split("/")[3];
     const [newObject, setNewObject] = useState({})
     const navigate = useNavigate()
+
+    const { data, loading, error } = useFetch(`/${path}/${id}`);
 
     const handleChange = (e) => {
         setNewObject((prev) => ({ ...prev, [e.target.id]: e.target.value}));
         console.log(newObject)
     };
 
-    console.log(path)
-
-
-    const handleClick = async (e) => {
-        e.preventDefault()
-        console.log(newObject)
-        try {
-            await axios.post(`http://localhost:8800/api/${path}`, newObject)
-            alert("Success!")
-            navigate(`/${path}`);
-        } catch (err) {
-            alert("Failure...")
-            console.log(err)
-        }
+    const handleClick = () => {
+        console.log("You clicked me!")
+        // Add the put axios call here
+        
     }
 
+
     return (
-        <div className='new'>
-            <Sidebar />
-            <div className='newContainer'>
-                {path === "horses" && 
+        <div>
+            Edit page
+            {path === "horses" && 
                     <div>
-                        <h1>Add a New Horse</h1>
+                        <h1>Edit Horse</h1>
                         <form className='newCard'>
                             <label>Name:</label>
-                            <input onChange={handleChange} type="text" id="name"></input>
+                            <input onChange={handleChange} type="text" id="name" placeholder={data.name}></input>
                             <label>Description:</label>
-                            <input onChange={handleChange} type="text" id="description"></input>
+                            <input onChange={handleChange} type="text" id="description" placeholder={data.description}></input>
                             <button onClick={handleClick}>Submit</button>
                         </form>
                     </div>}
                 {path === "teachers" && 
                     <div>
-                        <h1>Add a New Teacher</h1>
+                        <h1>Edit Teacher</h1>
                         <form className='newCard'>
                             <label>Name:</label>
-                            <input onChange={handleChange} type="text" id="name"></input>
+                            <input onChange={handleChange} type="text" id="name" placeholder={data.name}></input>
                             <button onClick={handleClick}>Submit</button>
                         </form>
                     </div>}
                 {path === "students" && 
                     <div>
-                        <h1>Add a New Student</h1>
+                        <h1>Edit Student</h1>
                         <form className='newCard'>
                             <label>First Name:</label>
-                            <input onChange={handleChange} type="text" id="firstName"></input>
+                            <input onChange={handleChange} type="text" id="firstName" placeholder={data.firstName}></input>
                             <label>Last Name:</label>
-                            <input onChange={handleChange} type="text" id="lastName"></input>
+                            <input onChange={handleChange} type="text" id="lastName" placeholder={data.lastName}></input>
                             <label>Age:</label>
-                            <input onChange={handleChange} type="number" id="age"></input>
+                            <input onChange={handleChange} type="number" id="age" placeholder={data.age}></input>
                             <label>Email:</label>
-                            <input onChange={handleChange} type="email" id="email"></input>
+                            <input onChange={handleChange} type="email" id="email" placeholder={data.email}></input>
                             <label>Phone:</label>
-                            <input onChange={handleChange} type="text" id="phone"></input>
+                            <input onChange={handleChange} type="text" id="phone" placeholder={data.phone}></input>
                             <div className='firstLesson'>
                                 <label>First Lesson:</label>
                                 <input onChange={handleChange} type="radio" name="yesNoRadio" id="firstLesson" value="true" />Yes
@@ -77,9 +70,8 @@ const New = () => {
                             <button onClick={handleClick}>Submit</button>
                         </form>
                     </div>}
-            </div>
         </div>
     )
 }
 
-export default New
+export default Edit
