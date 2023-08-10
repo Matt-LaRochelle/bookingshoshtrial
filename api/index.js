@@ -39,14 +39,10 @@ app.use(cors())
 // app.use(cookieParser())
 app.use(express.json())
 
-console.log("step 1")
-
 // app.use('/api/auth', authRoute);
 app.use('/api/teachers', teachersRoute)
 app.use('/api/horses', horsesRoute)
 app.use('/api/students', studentsRoute);
-
-console.log("step 2")
 
 
 app.use((err, req, res, next)=> {

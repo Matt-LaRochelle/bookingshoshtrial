@@ -17,17 +17,17 @@ const Datatable = ({columns}) => {
 
     useEffect(() => {
         setList(data)
-        console.log("data:", data)
-        // console.log("data:" + JSON.stringify(data))
     }, [data])
 
     const handleDelete = async (id) => {
+      console.log(id)
         try {
           // This path must be dynamic as well
           await axios.delete(`/${path}/${id}`)
+          alert("Successfuly deleted item.")
           setList(list.filter((item) => item._id !== id));
         } catch (err) {
-    
+          console.log(err)
         }
       };
 

@@ -23,10 +23,10 @@ const New = () => {
         console.log(newObject)
         try {
             await axios.post(`http://localhost:8800/api/${path}`, newObject)
-            console.log("success!")
             alert("Success!")
             navigate(`/${path}`);
         } catch (err) {
+            alert("Failure...")
             console.log(err)
         }
     }

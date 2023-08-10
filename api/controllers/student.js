@@ -19,6 +19,14 @@ export const createStudent = async (req, res, next) => {
 
 
 //DELETE
+export const deleteStudent = async (req, res, next)=> {
+    try {
+        await Student.findByIdAndDelete(req.params.id);
+        res.status(200).json("Student has been deleted.")
+    } catch(err) {
+        next(err)
+    }
+}
 
 
 //LOGIN student

@@ -3,9 +3,7 @@ import { createError } from '../utils/error.js'
 
 //CREATE
 export const createHorse = async (req, res, next) => {
-    console.log("step 3")
     const newHorse = new Horse(req.body)
-    console.log(newHorse)
 
     // Save a new horse document here
     try {
@@ -20,6 +18,14 @@ export const createHorse = async (req, res, next) => {
 
 
 //DELETE
+export const deleteHorse = async (req, res, next)=> {
+    try {
+        await Horse.findByIdAndDelete(req.params.id);
+        res.status(200).json("Horse has been deleted.")
+    } catch(err) {
+        next(err)
+    }
+}
 
 //GET horse
 export const getHorse = async (req, res, next) => {

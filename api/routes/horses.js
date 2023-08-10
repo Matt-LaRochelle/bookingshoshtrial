@@ -1,5 +1,5 @@
 import express from 'express'
-import { createHorse, getHorse, getHorses } from '../controllers/horse.js' 
+import { createHorse, deleteHorse, getHorse, getHorses } from '../controllers/horse.js' 
 //import { verifyAdmin } from a utils function
 
 const router = express.Router();
@@ -13,13 +13,15 @@ router.post('/', createHorse)
 
 //Delete
 //Admin only
-
+router.delete('/:id', deleteHorse)
 
 //Get
 router.get('/:id', getHorse)
 
 //Get all
-//This will show all the horses that are available on a specific day
 router.get('/', getHorses)
+
+//Get all horses for a specific day
+//This will show all the horses that are available on a specific day
 
 export default router

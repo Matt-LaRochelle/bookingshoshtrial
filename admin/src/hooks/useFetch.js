@@ -12,7 +12,6 @@ const useFetch = (url) => {
             try {
                 const res = await axios.get(url)
                 setData(res.data);
-                console.log("from the fetch" + JSON.stringify(res.data[0].name))
             } catch (err) {
                 setError(err);
             }
@@ -29,7 +28,6 @@ const useFetch = (url) => {
         try {
             const res = await axios.get(url)
             setData(res.data);
-            console.log("from the fetch" + res.data)
         } catch (err) {
             setError(err);
         }
