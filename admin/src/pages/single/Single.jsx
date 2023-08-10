@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import './single.scss'
 import useFetch from '../../hooks/useFetch';
+import Sidebar from '../../components/sidebar/Sidebar'
 
 const Single = () => {
     const location = useLocation();
@@ -14,11 +15,36 @@ const Single = () => {
     console.log("fetched data:", data)
 
     return (
-        <div>
-            <p>Single page layout</p>
-            <p>Information/Photo card</p>
-            <p>Stats for last 6 months</p>
-            <p>Most recent transactions</p>
+        <div className="single">
+            <Sidebar />
+            <div className='singleContainer'>
+                <p>Single page layout</p>
+                {path === "teachers" &&
+                <div>
+                    <p>Information/Photo card</p>
+                    <h2>{data.name}</h2>
+                </div>
+                }
+                {path === "horses" &&
+                <div>
+                    <p>Information/Photo card</p>
+                    <h2>{data.name}</h2>
+                    <p>{data.description}</p>
+                </div>
+                }
+                {path === "students" &&
+                <div>
+                    <p>Information/Photo card</p>
+                    <h2>{data.firstName + " " + data.lastName}</h2>
+                    <p>Age: {data.age}</p>
+                    <p>Email: {data.email}</p>
+                    <p>Phone: {data.phone}</p>
+                    <p>First Lesson: {data.firstLesson === true ? "True" : "False"}</p>
+                </div>
+                }
+                <p>Stats for last 6 months</p>
+                <p>Most recent transactions</p>
+            </div>
         </div>
     )
 }
