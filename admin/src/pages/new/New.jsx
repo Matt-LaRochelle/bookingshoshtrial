@@ -1,6 +1,6 @@
 import './new.scss'
 import Sidebar from '../../components/sidebar/Sidebar'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { useState } from 'react';
 
@@ -8,6 +8,7 @@ const New = () => {
     const location = useLocation();
     const path = location.pathname.split("/")[1];
     const [newObject, setNewObject] = useState({})
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         setNewObject((prev) => ({ ...prev, [e.target.id]: e.target.value}));
@@ -23,6 +24,8 @@ const New = () => {
         try {
             await axios.post(`http://localhost:8800/api/${path}`, newObject)
             console.log("success!")
+            alert("Success!")
+            navigate(`/${path}`);
         } catch (err) {
             console.log(err)
         }
