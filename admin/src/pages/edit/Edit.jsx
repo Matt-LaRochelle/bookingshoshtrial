@@ -13,18 +13,6 @@ const Edit = () => {
 
     const { data, loading, error } = useFetch(`/${path}/${id}`);
 
-    // useEffect(() => {
-    //     if (path === "horses") {
-    //       setHorseName(data.name)
-    //     } else if (path === "teachers") {
-    //       setTeacherName(data.name)
-    //     } else if (path === "students") {
-    //       setStudentName(data.firstName)
-    //     } else {
-    //       console.log("The end.")
-    //     }
-    //   }, [data, path]);
-
     const handleChange = (e) => {
         setNewObject((prev) => ({ ...prev, [e.target.id]: e.target.value}));
         console.log(newObject)
