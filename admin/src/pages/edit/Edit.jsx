@@ -1,5 +1,5 @@
 import './edit.scss'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import Sidebar from '../../components/sidebar/Sidebar'
@@ -13,27 +13,43 @@ const Edit = () => {
 
     const { data, loading, error } = useFetch(`/${path}/${id}`);
 
+    // useEffect(() => {
+    //     if (path === "horses") {
+    //       setHorseName(data.name)
+    //     } else if (path === "teachers") {
+    //       setTeacherName(data.name)
+    //     } else if (path === "students") {
+    //       setStudentName(data.firstName)
+    //     } else {
+    //       console.log("The end.")
+    //     }
+    //   }, [data, path]);
+
     const handleChange = (e) => {
         setNewObject((prev) => ({ ...prev, [e.target.id]: e.target.value}));
         console.log(newObject)
     };
 
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault()
         console.log("You clicked me!")
         // Add the put axios call here
-        
+        console.log(newObject)
     }
 
 
     return (
-        <div>
+        <div className='edit'>
+            <Sidebar />
+            <div className='editContainer'>
+
             Edit page
             {path === "horses" && 
                     <div>
                         <h1>Edit Horse</h1>
                         <form className='newCard'>
                             <label>Name:</label>
-                            <input onChange={handleChange} type="text" id="name" placeholder={data.name}></input>
+                            <input onChange={handleChange} type="text" id="name" placeholder={data.name} ></input>
                             <label>Description:</label>
                             <input onChange={handleChange} type="text" id="description" placeholder={data.description}></input>
                             <button onClick={handleClick}>Submit</button>
@@ -70,6 +86,7 @@ const Edit = () => {
                             <button onClick={handleClick}>Submit</button>
                         </form>
                     </div>}
+            </div>
         </div>
     )
 }
