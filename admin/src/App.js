@@ -16,20 +16,20 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={!user && <Login />} />
-            <Route path="/" element={user && <Home />} />
-            <Route path="/teachers" element={user && <List columns={teacherColumns} />} />
-            <Route path="/teachers/:id" element={user && <Single />} />
-            <Route path="/teachers/new" element={user && <New />} />
-            <Route path="/teachers/edit/:id" element={user && <Edit />} />
-            <Route path="/horses" element={user && <List columns={horseColumns} />} />
-            <Route path="/horses/:id" element={user && <Single />} />
-            <Route path="/horses/new" element={user && <New />} />
-            <Route path="/horses/edit/:id" element={user && <Edit />} />
-            <Route path="/students" element={user && <List columns={studentColumns} />} />
-            <Route path="/students/:id" element={user && <Single />} />
-            <Route path="/students/new" element={user && <New />} />
-            <Route path="/students/edit/:id" element={user && <Edit />} />
+          <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
+            <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+            <Route path="/teachers" element={user ? <List columns={teacherColumns} /> : <Navigate to="/login" />} />
+            <Route path="/teachers/:id" element={user ? <Single /> : <Navigate to="/login" />} />
+            <Route path="/teachers/new" element={user ? <New /> : <Navigate to="/login" />} />
+            <Route path="/teachers/edit/:id" element={user ? <Edit /> : <Navigate to="/login" />} />
+            <Route path="/horses" element={user ? <List columns={horseColumns} /> : <Navigate to="/login" />} />
+            <Route path="/horses/:id" element={user ? <Single /> : <Navigate to="/login" />} />
+            <Route path="/horses/new" element={user ? <New /> : <Navigate to="/login" />} />
+            <Route path="/horses/edit/:id" element={user ? <Edit /> : <Navigate to="/login" />} />
+            <Route path="/students" element={user ? <List columns={studentColumns} /> : <Navigate to="/login" />} />
+            <Route path="/students/:id" element={user ? <Single /> : <Navigate to="/login" />} />
+            <Route path="/students/new" element={user ? <New /> : <Navigate to="/login" />} />
+            <Route path="/students/edit/:id" element={user ? <Edit /> : <Navigate to="/login" />} />
         </Routes>
       </BrowserRouter>
     </div>
