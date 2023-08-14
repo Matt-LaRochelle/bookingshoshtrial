@@ -5,7 +5,6 @@ import mongoose from 'mongoose'
 // because we are using import and "type": "module" in package.json file -
 // we must include the file extension in the import route.
 import authRoute from './routes/auth.js';
-
 import studentsRoute from './routes/students.js';
 import horsesRoute from './routes/horses.js';
 import teachersRoute from './routes/teachers.js';

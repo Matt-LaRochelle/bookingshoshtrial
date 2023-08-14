@@ -1,8 +1,16 @@
 import './sidebar.scss'
 import { Link } from 'react-router-dom'
 import l2 from '../../images/l2.png'
+import { AuthContext } from '../../context/AuthContext'
+import { useContext } from 'react'
 
 const Sidebar = () => {
+    const { dispatch } = useContext(AuthContext)
+
+    const logout = () => {
+        dispatch({type: 'LOGOUT'})
+    }
+    
     return (
         <div className='sidebar'>
             <div className='top'>
@@ -25,6 +33,7 @@ const Sidebar = () => {
                     <li>Schedule</li>
                     <li>Income</li>
                     <li>Statistics</li>
+                    <button onClick={logout}>Log Out</button>
                 </ul>
             </div>
             <div className='bottom'>

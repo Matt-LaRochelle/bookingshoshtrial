@@ -1,5 +1,5 @@
-import dotenv from 'dotenv'
 
+//ADMIN login
 export const adminLogin = (req, res, next) => {
     const {name, email} = req.body
     console.log("Made it to here!")
