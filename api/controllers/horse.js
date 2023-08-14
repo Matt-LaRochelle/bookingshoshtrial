@@ -1,7 +1,7 @@
 import Horse from '../models/Horse.js'
 import { createError } from '../utils/error.js'
 
-//CREATE
+//CREATE - admin
 export const createHorse = async (req, res, next) => {
     const newHorse = new Horse(req.body)
 
@@ -14,7 +14,7 @@ export const createHorse = async (req, res, next) => {
     }
 }
 
-//UPDATE
+//UPDATE - admin
 export const updateHorse = async (req, res, next) => {
     try {
         const updatedHorse = await Horse.findByIdAndUpdate(
@@ -28,7 +28,7 @@ export const updateHorse = async (req, res, next) => {
     }
 }
 
-//DELETE
+//DELETE - admin
 export const deleteHorse = async (req, res, next)=> {
     try {
         await Horse.findByIdAndDelete(req.params.id);
@@ -38,7 +38,7 @@ export const deleteHorse = async (req, res, next)=> {
     }
 }
 
-//GET horse
+//GET horse - admin and client
 export const getHorse = async (req, res, next) => {
     const id = req.params.id
     try {
@@ -49,7 +49,7 @@ export const getHorse = async (req, res, next) => {
     }
 }
 
-//GET horses plural
+//GET horses plural - admin and client
 export const getHorses = async (req, res, next) => {
     try {
         const horses = await Horse.find();

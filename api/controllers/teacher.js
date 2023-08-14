@@ -1,7 +1,7 @@
 import Teacher from '../models/Teacher.js'
 import { createError } from '../utils/error.js'
 
-//CREATE
+//CREATE - admin
 export const createTeacher = async (req, res, next) => {
     const newTeacher = new Teacher(req.body)
 
@@ -14,7 +14,7 @@ export const createTeacher = async (req, res, next) => {
     }
 }
 
-//UPDATE
+//UPDATE - admin
 export const updateTeacher = async (req, res, next) => {
     try {
         const updatedTeacher = await Teacher.findByIdAndUpdate(
@@ -28,7 +28,7 @@ export const updateTeacher = async (req, res, next) => {
     }
 }
 
-//DELETE
+//DELETE - admin
 export const deleteTeacher = async (req, res, next) => {
     try {
         await Teacher.findByIdAndDelete(req.params.id);
@@ -38,7 +38,7 @@ export const deleteTeacher = async (req, res, next) => {
     }
 }
 
-//GET teacher
+//GET teacher - admin and client
 export const getTeacher = async (req, res, next) => {
     const id = req.params.id
     try {
@@ -49,7 +49,7 @@ export const getTeacher = async (req, res, next) => {
     }
 }
 
-//GET teachers plural
+//GET teachers plural - admin and client
 export const getTeachers = async (req, res, next) => {
     try {
         const teachers = await Teacher.find();

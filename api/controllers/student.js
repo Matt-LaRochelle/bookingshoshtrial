@@ -2,7 +2,7 @@ import Student from '../models/Student.js'
 import { createError } from '../utils/error.js'
 
 
-//CREATE
+//CREATE - admin and client
 export const createStudent = async (req, res, next) => {
     const newStudent = new Student(req.body)
 
@@ -15,7 +15,7 @@ export const createStudent = async (req, res, next) => {
     }
 }
 
-//UPDATE
+//UPDATE - admin and client
 export const updateStudent = async (req, res, next) => {
     try {
         const updatedStudent = await Student.findByIdAndUpdate(
@@ -30,7 +30,7 @@ export const updateStudent = async (req, res, next) => {
 }
 
 
-//DELETE
+//DELETE - admin
 export const deleteStudent = async (req, res, next)=> {
     try {
         await Student.findByIdAndDelete(req.params.id);
@@ -41,7 +41,7 @@ export const deleteStudent = async (req, res, next)=> {
 }
 
 
-//LOGIN student
+//LOGIN student - client
 export const loginStudent = async (req, res, next) => {
     const {firstName, email} = req.body 
 
@@ -62,7 +62,7 @@ export const loginStudent = async (req, res, next) => {
     }
 }
 
-//GET student
+//GET student - admin
 export const getStudent = async (req, res, next) => {
     const id = req.params.id
     try {
@@ -73,7 +73,7 @@ export const getStudent = async (req, res, next) => {
     }
 }
 
-//GET Students plural
+//GET Students plural - admin
 export const getStudents = async (req, res, next) => {
     try {
         const students = await Student.find();

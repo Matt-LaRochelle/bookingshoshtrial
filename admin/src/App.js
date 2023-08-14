@@ -5,6 +5,7 @@ import List from './pages/list/List'
 import Single from './pages/single/Single'
 import New from './pages/new/New';
 import Edit from './pages/edit/Edit'
+import Login from './pages/login/Login'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/students/:id" element={<Single />} />
           <Route path="/students/new" element={<New />} />
           <Route path="/students/edit/:id" element={<Edit />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 
 // because we are using import and "type": "module" in package.json file -
 // we must include the file extension in the import route.
-// import authRoute from './routes/auth.js';
+import authRoute from './routes/auth.js';
 
 import studentsRoute from './routes/students.js';
 import horsesRoute from './routes/horses.js';
@@ -39,7 +39,7 @@ app.use(cors())
 // app.use(cookieParser())
 app.use(express.json())
 
-// app.use('/api/auth', authRoute);
+app.use('/api/auth', authRoute);
 app.use('/api/teachers', teachersRoute)
 app.use('/api/horses', horsesRoute)
 app.use('/api/students', studentsRoute);
