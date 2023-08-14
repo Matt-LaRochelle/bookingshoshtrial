@@ -1,7 +1,7 @@
 import './login.scss'
 import axios from 'axios'
 import { useContext, useState } from 'react'
-// import { AuthContext } from '../../context/AuthContext'
+import { AuthContext } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -11,7 +11,7 @@ const Login = () => {
         password: undefined
     })
 
-    // const { loading, error, dispatch } = useContext(AuthContext);
+    const { loading, error, dispatch } = useContext(AuthContext);
 
     const navigate = useNavigate()
     
@@ -21,22 +21,21 @@ const Login = () => {
 
     const handleClick = async (e) => {
         e.preventDefault()
-        // dispatch({type: 'LOGIN_START'})
+        dispatch({type: 'LOGIN_START'})
         try {
             const res = await axios.post('/auth/login', credentials);
-            console.log(res)
-            // if (res.data.isAdmin) {
-            //   dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.details });
+            if (res.data.login === "successful!") {
+              dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.login });
               
               navigate('/')
-            // } else {
-            //   dispatch({
-            //     type: 'LOGIN_FAILURE', 
-            //     payload: {message:"You are not allowed."},
-            //   });
-            // }
+            } else {
+              dispatch({
+                type: 'LOGIN_FAILURE', 
+                payload: {message:"You are not allowed."},
+              });
+            }
         } catch (err) {
-            // dispatch({type: 'LOGIN_FAILURE', payload: err.response.data})
+            dispatch({type: 'LOGIN_FAILURE', payload: err.response.data})
             console.log(err)
         }
     }
@@ -56,8 +55,8 @@ const Login = () => {
                     id='email' 
                     onChange={handleChange} 
                     className='lInput' />
-                <button onClick={handleClick} className='lButton'>Login</button>
-                {/* {error && <span>{error.message}</span>} */}
+                <button disabled={loading} onClick={handleClick} className='lButton'>Login</button>
+                {error && <span>{error.message}</span>}
             </div>
         </div>
     )
