@@ -19,13 +19,14 @@ const Login = () => {
         setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }))
     }
 
-    const handleClick = async (e) => {
+    const handleClick = async e => {
         e.preventDefault()
-        dispatch({type: 'LOGIN_START'})
+        // dispatch({type: 'LOGIN_START'})
         try {
             const res = await axios.post('/auth/login', credentials);
-            if (res.data.login === "successful!") {
-              dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.login });
+            const response = res.data.user
+            if (response) {
+              dispatch({ type: 'LOGIN_SUCCESS', payload: response });
               
               navigate('/')
             } else {
@@ -35,7 +36,7 @@ const Login = () => {
               });
             }
         } catch (err) {
-            dispatch({type: 'LOGIN_FAILURE', payload: err.response.data})
+            dispatch({type: 'LOGIN_FAILURE', payload: err.response})
             console.log(err)
         }
     }
