@@ -23,8 +23,8 @@ export const updateHorse = async (req, res, next) => {
             { new: true }
         )
         res.status(200).json(updatedHorse)
-    } catch(err) {
-        next(err)
+    } catch (err) {
+        next (err)
     }
 }
 
@@ -33,8 +33,8 @@ export const deleteHorse = async (req, res, next)=> {
     try {
         await Horse.findByIdAndDelete(req.params.id);
         res.status(200).json("Horse has been deleted.")
-    } catch(err) {
-        next(err)
+    } catch (err) {
+        next (err)
     }
 }
 

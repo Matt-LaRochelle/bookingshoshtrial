@@ -24,8 +24,8 @@ export const updateStudent = async (req, res, next) => {
             { new: true }
         )
         res.status(200).json(updatedStudent)
-    } catch(err) {
-        next(err)
+    } catch (err) {
+        next (err)
     }
 }
 
@@ -35,8 +35,8 @@ export const deleteStudent = async (req, res, next)=> {
     try {
         await Student.findByIdAndDelete(req.params.id);
         res.status(200).json("Student has been deleted.")
-    } catch(err) {
-        next(err)
+    } catch (err) {
+        next (err)
     }
 }
 
@@ -45,17 +45,21 @@ export const deleteStudent = async (req, res, next)=> {
 export const loginStudent = async (req, res, next) => {
     const {firstName, email} = req.body 
 
-    // Check if student is already in the DB
-    const foundStudent = await Student.findOne({ email })
-    if (!foundStudent) return next(createError(404, "Email not found..."))
-
-    // Check if first name matches
-    if (foundStudent.firstName !== firstName) {
-        return next(createError(404, "First Name does not match with email..."))
+    try {
+        // Check if student is already in the DB
+        const foundStudent = await Student.findOne({ email })
+        if (!foundStudent) return next(createError(404, "Email not found..."))
+    
+        // Check if first name matches
+        if (foundStudent.firstName !== firstName) {
+            return next(createError(404, "First Name does not match with email..."))
+        }
+    
+        // Return the student's information
+        res.status(200).json(foundStudent)
+    } catch (err) {
+        next (err)
     }
-
-    // Return the student's information
-    res.status(200).json(foundStudent)
 }
 
 //GET student

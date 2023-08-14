@@ -23,8 +23,8 @@ export const updateTeacher = async (req, res, next) => {
             { new: true }
         )
         res.status(200).json(updatedTeacher)
-    } catch(err) {
-        next(err)
+    } catch (err) {
+        next (err)
     }
 }
 
@@ -33,8 +33,8 @@ export const deleteTeacher = async (req, res, next) => {
     try {
         await Teacher.findByIdAndDelete(req.params.id);
         res.status(200).json("Teacher has been deleted.")
-    } catch(err) {
-        next(err)
+    } catch (err) {
+        next (err)
     }
 }
 
