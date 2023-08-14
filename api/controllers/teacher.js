@@ -15,9 +15,21 @@ export const createTeacher = async (req, res, next) => {
 }
 
 //UPDATE
+export const updateTeacher = async (req, res, next) => {
+    try {
+        const updatedTeacher = await Teacher.findByIdAndUpdate(
+            req.params.id, 
+            { $set: req.body },
+            { new: true }
+        )
+        res.status(200).json(updatedTeacher)
+    } catch(err) {
+        next(err)
+    }
+}
 
 //DELETE
-export const deleteTeacher = async (req, res, next)=> {
+export const deleteTeacher = async (req, res, next) => {
     try {
         await Teacher.findByIdAndDelete(req.params.id);
         res.status(200).json("Teacher has been deleted.")

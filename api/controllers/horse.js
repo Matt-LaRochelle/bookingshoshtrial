@@ -15,7 +15,18 @@ export const createHorse = async (req, res, next) => {
 }
 
 //UPDATE
-
+export const updateHorse = async (req, res, next) => {
+    try {
+        const updatedHorse = await Horse.findByIdAndUpdate(
+            req.params.id, 
+            { $set: req.body },
+            { new: true }
+        )
+        res.status(200).json(updatedHorse)
+    } catch(err) {
+        next(err)
+    }
+}
 
 //DELETE
 export const deleteHorse = async (req, res, next)=> {

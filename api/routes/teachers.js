@@ -1,5 +1,5 @@
 import express from 'express'
-import { createTeacher, deleteTeacher, getTeachers, getTeacher } from '../controllers/teacher.js' 
+import { createTeacher, updateTeacher, deleteTeacher, getTeachers, getTeacher } from '../controllers/teacher.js' 
 //import { verifyAdmin } from a utils function
 
 const router = express.Router();
@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/', createTeacher)
 
 //Update
-//Admin only
+router.put('/:id', updateTeacher)
 
 //Delete
 router.delete('/:id', deleteTeacher)

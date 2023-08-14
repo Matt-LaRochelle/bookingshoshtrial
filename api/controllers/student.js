@@ -16,6 +16,18 @@ export const createStudent = async (req, res, next) => {
 }
 
 //UPDATE
+export const updateStudent = async (req, res, next) => {
+    try {
+        const updatedStudent = await Student.findByIdAndUpdate(
+            req.params.id, 
+            { $set: req.body },
+            { new: true }
+        )
+        res.status(200).json(updatedStudent)
+    } catch(err) {
+        next(err)
+    }
+}
 
 
 //DELETE

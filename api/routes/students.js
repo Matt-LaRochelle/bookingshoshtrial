@@ -1,5 +1,5 @@
 import express from 'express'
-import { createStudent, loginStudent, getStudent, getStudents, deleteStudent } from '../controllers/student.js' 
+import { createStudent, updateStudent, loginStudent, getStudent, getStudents, deleteStudent } from '../controllers/student.js' 
 //import { verifyAdmin } from a utils function
 
 const router = express.Router();
@@ -9,7 +9,7 @@ router.post('/', createStudent)
 
 //Update
 //Admin only - WELL STUDENTS SHOULD  be able to update their information as well
-
+router.put('/:id', updateStudent)
 //Delete
 //Admin only
 router.delete('/:id', deleteStudent)

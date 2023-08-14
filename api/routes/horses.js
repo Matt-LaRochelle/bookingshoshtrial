@@ -1,5 +1,5 @@
 import express from 'express'
-import { createHorse, deleteHorse, getHorse, getHorses } from '../controllers/horse.js' 
+import { createHorse, updateHorse, deleteHorse, getHorse, getHorses } from '../controllers/horse.js' 
 //import { verifyAdmin } from a utils function
 
 const router = express.Router();
@@ -10,6 +10,7 @@ router.post('/', createHorse)
 
 //Update
 //Admin only
+router.put('/:id', updateHorse)
 
 //Delete
 //Admin only

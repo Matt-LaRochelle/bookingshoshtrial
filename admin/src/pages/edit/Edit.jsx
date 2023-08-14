@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import Sidebar from '../../components/sidebar/Sidebar'
+import axios from 'axios';
 
 const Edit = () => {
     const location = useLocation();
@@ -18,11 +19,19 @@ const Edit = () => {
         console.log(newObject)
     };
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         e.preventDefault()
         console.log("You clicked me!")
         // Add the put axios call here
         console.log(newObject)
+        try {
+            await axios.put(`http://localhost:8800/api/${path}/${id}`, newObject)
+            alert("Success!")
+            navigate(`/${path}`);
+        } catch (err) {
+            alert("Failure...")
+            console.log(err)
+        }
     }
 
 
