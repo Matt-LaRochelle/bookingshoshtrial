@@ -4,7 +4,7 @@ import { createStudent, updateStudent, loginStudent, getStudent, getStudents, de
 
 const router = express.Router();
 
-// Create
+// Create Admin + Client
 router.post('/', createStudent)
 
 //Update

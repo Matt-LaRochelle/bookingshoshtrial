@@ -6,6 +6,10 @@ import { createError } from '../utils/error.js'
 export const createStudent = async (req, res, next) => {
     const newStudent = new Student(req.body)
 
+    //TODO add logic that makes sure student name and email are unique
+    //One family may use the same email for their kids so email can be reused
+    //But within that email "class" there needs to be unique names
+    
     // Save a new student document here
     try {
         const savedStudent = await newStudent.save()
