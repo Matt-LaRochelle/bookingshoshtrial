@@ -1,16 +1,28 @@
 import './home.scss'
 import { AuthContext } from '../../context/AuthContext'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import axios from 'axios'
 
 const Home = () => {
-
+    const [data, setData] = useState({})
     const { user } = useContext(AuthContext)
 
-    console.log(user)
+    //Get the data on the currently signed in user
+    useEffect (() => {
+        const getInfo = async () => {
+            try {
+                const response = await axios.get(`/students/${user}`)
+                setData(response.data)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getInfo()
+    }, [])
 
     return (
         <div>
-            <h1>Welcome to this client side app {user}</h1>
+            <h1>Welcome to this client side app {data.firstName}</h1>
             <ul>
                 <li>Book a lesson</li>
                 <li>Past lessons</li>
