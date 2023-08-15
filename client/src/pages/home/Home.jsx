@@ -1,9 +1,16 @@
 import './home.scss'
+import { AuthContext } from '../../context/AuthContext'
+import { useContext } from 'react'
 
 const Home = () => {
+
+    const { user } = useContext(AuthContext)
+
+    console.log(user)
+
     return (
         <div>
-            <h1>Welcome to this client side app</h1>
+            <h1>Welcome to this client side app {user}</h1>
             <ul>
                 <li>Book a lesson</li>
                 <li>Past lessons</li>
