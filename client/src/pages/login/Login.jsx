@@ -21,23 +21,24 @@ const Login = () => {
     const handleClick = async (e) => {
         e.preventDefault()
         console.log(credentials)
-        // dispatch({type: 'LOGIN_START'})
+        dispatch({type: 'LOGIN_START'})
         try {
             const res = await axios.post('/students/login', credentials);
-            // const response = res.data.user
+            const response = res.data._id
             console.log(res)
-            // if (response) {
-            //   dispatch({ type: 'LOGIN_SUCCESS', payload: response });
+            console.log(res.data._id)
+            if (response) {
+              dispatch({ type: 'LOGIN_SUCCESS', payload: response });
               
-            //   navigate('/')
-            // } else {
-            //   dispatch({
-            //     type: 'LOGIN_FAILURE', 
-            //     payload: {message:"You are not allowed."},
-            //   });
-            // }
+              navigate('/')
+            } else {
+              dispatch({
+                type: 'LOGIN_FAILURE', 
+                payload: {message:"You are not allowed."},
+              });
+            }
         } catch (err) {
-            // dispatch({type: 'LOGIN_FAILURE', payload: err.response})
+            dispatch({type: 'LOGIN_FAILURE', payload: err.response})
             console.log(err)
         }
     }

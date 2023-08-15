@@ -7,8 +7,8 @@ const Home = () => {
             <ul>
                 <li>Book a lesson</li>
                 <li>Past lessons</li>
-                <li>Upcoming Schedule</li>
-                <li>Profile Settings</li>
+                <li>Upcoming Schedule - have them email to confirm cancellations</li>
+                <li>Profile Settings - have them email a link to change things</li>
             </ul>
         </div>
     )
