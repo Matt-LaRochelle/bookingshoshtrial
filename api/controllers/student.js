@@ -44,6 +44,7 @@ export const deleteStudent = async (req, res, next)=> {
 //LOGIN student - client
 export const loginStudent = async (req, res, next) => {
     const {firstName, email} = req.body 
+    console.log(firstName)
 
     try {
         // Check if student is already in the DB
@@ -55,6 +56,7 @@ export const loginStudent = async (req, res, next) => {
             return next(createError(404, "First Name does not match with email..."))
         }
     
+        console.log("success!")
         // Return the student's information
         res.status(200).json(foundStudent)
     } catch (err) {
