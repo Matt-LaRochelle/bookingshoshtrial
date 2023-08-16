@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './booking.scss'
 import { Calendar } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import format from 'date-fns/format'
 import axios from 'axios'
+import {AuthContext} from '../../context/AuthContext'
 
 const Booking = () => {
     const [lessonDate, setLessonDate] = useState('')
@@ -13,6 +14,9 @@ const Booking = () => {
     const [horse, setHorse] = useState('')
     const [listOfTeachers, setListOfTeachers] = useState([])
     const [listOfHorses, setListOfHorses] = useState([])
+    const [studentData, setStudentData] = useState('')
+    const [open, setOpen] = useState(false)
+    const { user } = useContext(AuthContext)
 
     useEffect(() => {
         //TODO - These should not be hard coded, but should be dynamic as the first
@@ -21,6 +25,7 @@ const Booking = () => {
         setLessonTime("11")
         setTeacher('Shoshana')
         setHorse("Bravado")
+        // Get Teacher information
         const getTeachers = async () => {
             try {
                 const teacherData = await axios.get('/teachers')
@@ -29,6 +34,8 @@ const Booking = () => {
                 console.log(err)
             }
         }
+
+        //Get Horse information
         const getHorses = async () => {
             try {
                 const horseData = await axios.get('/horses')
@@ -37,12 +44,31 @@ const Booking = () => {
                 console.log(err)
             }
         }
+
+        //Get User information
+        const getUser = async () => {
+            try {
+                const userData = await axios.get(`/students/${user}`)
+                console.log("user data:", userData)
+                setStudentData(userData.data)
+            } catch (err) {
+                console.log(err)
+            }
+        }
         getTeachers()
         getHorses()
+        getUser()
     }, [])
 
+    // This is the info we want to submit to the backend
     const check = () => {
-        console.log(lessonDate, lessonTime, teacher, horse)
+        console.log({
+            lessonDate, 
+            lessonTime, 
+            teacher, 
+            horse, 
+            "student": studentData.firstName,
+            "studentID": studentData._id})
         // TODO - Send this information to the backend
         //Backend logs the day, time, teacher, horse, and student
         //When backend sends info in the beginning, it should already
@@ -82,7 +108,12 @@ const Booking = () => {
             <h1>Book a lesson</h1>
 
             <h3>Choose a date</h3>
-            <input value={ lessonDate } readOnly />
+            <input 
+                value={ lessonDate } 
+                readOnly 
+                onClick={ () => setOpen(open => !open) } 
+            />
+            {open &&
             <Calendar
                 date={new Date()}
                 onChange={handleDate}
@@ -90,6 +121,7 @@ const Booking = () => {
                 maxDate={futureDate}
                 color="#3d91ff"
             />
+            }
 
             <h3>Choose a time</h3>
             <select id="myDropdown" onChange={handleTime}>
