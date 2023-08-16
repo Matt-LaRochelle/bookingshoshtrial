@@ -43,6 +43,12 @@ const Booking = () => {
 
     const check = () => {
         console.log(lessonDate, lessonTime, teacher, horse)
+        // TODO - Send this information to the backend
+        //Backend logs the day, time, teacher, horse, and student
+        //When backend sends info in the beginning, it should already
+        //Block out certain day/times if the horse can't work during that time
+        //First choose teacher, then choose horse, then choose day, then choose time
+        //What will these documents look like?? Need to draw this out
     }
 
     const handleDate = (date) => {
