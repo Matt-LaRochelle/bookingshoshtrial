@@ -96,16 +96,24 @@ export const loginStudent = async (req, res, next) => {
 //Booking
 export const bookStudent = async (req, res, next) => {
     const { lessonDate, lessonTime, studentID } = req.body;
-    console.log(lessonDate, lessonTime, studentID)
 
     try {
         // We need to check if the date has already been picked
+        const data = await Student.findById(studentID)
+        console.log("Data:", data)
+        console.log("DB lesson Date:", data.lessonDates)
+        console.log("Client side lesson date:", lessonDate)
+        if (data.lessonDates.includes(lessonDate)) {
+            console.log("found?")
+        } else {
+            console.log("Not found.")
+        }
         // Then within the date there can be 6 times for that day.
         // Times must be nested inside of days
-        
+
         const trial = await Student.findByIdAndUpdate(
             studentID,
-            { $set: {lessonDates: [ {lessonDate}, {lessonTime} ]} },
+            { $set: {lessonDates: [ {lessonDate}]} },
             { new: true }
             )
         console.log("trial", trial)
