@@ -61,8 +61,8 @@ const Booking = () => {
     }, [])
 
     // This is the info we want to submit to the backend
-    const check = () => {
-        console.log({
+    const check = async () => {
+        console.log("Lesson Booking Data:", {
             lessonDate, 
             lessonTime, 
             teacher, 
@@ -70,6 +70,18 @@ const Booking = () => {
             "student": studentData.firstName,
             "studentID": studentData._id})
         // TODO - Send this information to the backend
+        try {
+            const booked = await axios.post('/students/booking', {
+                lessonDate, 
+                lessonTime, 
+                teacher, 
+                horse, 
+                "student": studentData.firstName,
+                "studentID": studentData._id
+            })
+        } catch (err) {
+            console.log(err)
+        }
         //Backend logs the day, time, teacher, horse, and student
         //When backend sends info in the beginning, it should already
         //Block out certain day/times if the horse can't work during that time

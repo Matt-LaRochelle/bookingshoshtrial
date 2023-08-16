@@ -68,6 +68,13 @@ export const loginStudent = async (req, res, next) => {
     }
 }
 
+//Booking
+export const bookStudent = async (req, res, next) => {
+    const data = req.body
+    console.log(data)
+    console.log(data.lessonDate)
+}
+
 //GET student - admin
 export const getStudent = async (req, res, next) => {
     const id = req.params.id
