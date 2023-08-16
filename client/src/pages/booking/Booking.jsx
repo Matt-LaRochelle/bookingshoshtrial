@@ -15,6 +15,12 @@ const Booking = () => {
     const [listOfHorses, setListOfHorses] = useState([])
 
     useEffect(() => {
+        //TODO - These should not be hard coded, but should be dynamic as the first
+        // Item in each list which is created on the admin side.
+        setLessonDate(format(new Date(), 'MM/dd/yyyy'))
+        setLessonTime("11")
+        setTeacher('Shoshana')
+        setHorse("Bravado")
         const getTeachers = async () => {
             try {
                 const teacherData = await axios.get('/teachers')
