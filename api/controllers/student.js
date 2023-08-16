@@ -19,6 +19,7 @@ export const createStudent = async (req, res, next) => {
     }
 }
 
+
 //UPDATE - admin and client
 export const updateStudent = async (req, res, next) => {
     try {
@@ -39,6 +40,29 @@ export const deleteStudent = async (req, res, next)=> {
     try {
         await Student.findByIdAndDelete(req.params.id);
         res.status(200).json("Student has been deleted.")
+    } catch (err) {
+        next (err)
+    }
+}
+
+
+//GET student - admin
+export const getStudent = async (req, res, next) => {
+    const id = req.params.id
+    try {
+        const student = await Student.findById(id);
+        res.status(200).json(student)
+    } catch (err) {
+        next (err)
+    }
+}
+
+
+//GET Students plural - admin
+export const getStudents = async (req, res, next) => {
+    try {
+        const students = await Student.find();
+        res.status(200).json(students);
     } catch (err) {
         next (err)
     }
@@ -68,12 +92,17 @@ export const loginStudent = async (req, res, next) => {
     }
 }
 
+
 //Booking
 export const bookStudent = async (req, res, next) => {
     const { lessonDate, lessonTime, studentID } = req.body;
     console.log(lessonDate, lessonTime, studentID)
 
     try {
+        // We need to check if the date has already been picked
+        // Then within the date there can be 6 times for that day.
+        // Times must be nested inside of days
+        
         const trial = await Student.findByIdAndUpdate(
             studentID,
             { $set: {lessonDates: [ {lessonDate}, {lessonTime} ]} },
@@ -85,23 +114,3 @@ export const bookStudent = async (req, res, next) => {
     }
 }
 
-//GET student - admin
-export const getStudent = async (req, res, next) => {
-    const id = req.params.id
-    try {
-        const student = await Student.findById(id);
-        res.status(200).json(student)
-    } catch (err) {
-        next (err)
-    }
-}
-
-//GET Students plural - admin
-export const getStudents = async (req, res, next) => {
-    try {
-        const students = await Student.find();
-        res.status(200).json(students);
-    } catch (err) {
-        next (err)
-    }
-}
