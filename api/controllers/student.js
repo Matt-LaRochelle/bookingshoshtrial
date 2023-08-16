@@ -70,9 +70,19 @@ export const loginStudent = async (req, res, next) => {
 
 //Booking
 export const bookStudent = async (req, res, next) => {
-    const data = req.body
-    console.log(data)
-    console.log(data.lessonDate)
+    const { lessonDate, lessonTime, studentID } = req.body;
+    console.log(lessonDate, lessonTime, studentID)
+
+    try {
+        const trial = await Student.findByIdAndUpdate(
+            studentID,
+            { $set: {lessonDates: [ {lessonDate}, {lessonTime} ]} },
+            { new: true }
+            )
+        console.log("trial", trial)
+    } catch (err) {
+        next (err)
+    }
 }
 
 //GET student - admin

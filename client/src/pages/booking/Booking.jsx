@@ -101,6 +101,7 @@ const Booking = () => {
     const handleTeacher = (e) => {
         const selectedTeacher = e.target.value
         setTeacher(selectedTeacher)
+        console.log("teacher:", selectedTeacher)
     }
 
     const handleHorse = (e) => {
@@ -149,7 +150,7 @@ const Booking = () => {
             <select id="myDropdown" onChange={handleTeacher}>
             {listOfTeachers.map((teacher) => (
                 <option 
-                    value={teacher.name}
+                    value={teacher._id}
                     key={teacher._id}
                 >
                     {teacher.name}
@@ -162,7 +163,7 @@ const Booking = () => {
             <select id="myDropdown" onChange={handleHorse}>
             {listOfHorses.map((horse) => (
                 <option 
-                    value={horse.name}
+                    value={horse._id}
                     key={horse._id}
                 >
                     {horse.name}
