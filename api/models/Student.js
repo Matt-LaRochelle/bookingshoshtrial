@@ -24,7 +24,17 @@ const StudentSchema = new mongoose.Schema({
     firstLesson: {
         type: Boolean,
         required: true
-    }
+    },
+    lessonDates: [
+        {
+          lessonDate: {
+            type: Date,
+          },
+          lessonTime: {
+            type: String,
+          },
+        },
+      ],
 }, { timestamps: true });
 
 export default mongoose.model("Student", StudentSchema)

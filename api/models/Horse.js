@@ -9,9 +9,16 @@ const HorseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    unavailableDates: {
-        type: [Date]
-    }
+    lessonDates: [
+        {
+          lessonDate: {
+            type: Date,
+          },
+          lessonTime: {
+            type: String,
+          },
+        },
+      ],
 }, { timestamps: true });
 
 export default mongoose.model("Horse", HorseSchema)

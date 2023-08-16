@@ -5,9 +5,16 @@ const TeacherSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    unavailableDates: {
-        type: [Date]
-    }
+    lessonDates: [
+        {
+          lessonDate: {
+            type: Date,
+          },
+          lessonTime: {
+            type: String,
+          },
+        },
+      ],
 }, { timestamps: true });
 
 export default mongoose.model("Teacher", TeacherSchema)
