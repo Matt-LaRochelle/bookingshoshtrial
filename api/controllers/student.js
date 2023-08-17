@@ -100,23 +100,38 @@ export const bookStudent = async (req, res, next) => {
     try {
         // We need to check if the date has already been picked
         const data = await Student.findById(studentID)
-        console.log("Data:", data)
-        console.log("DB lesson Date:", data.lessonDates)
+        console.log("DB Student Data:", data)
+        console.log("DB lessonDate:", data.lessonDates[0].lessonDate)
         console.log("Client side lesson date:", lessonDate)
-        if (data.lessonDates.includes(lessonDate)) {
-            console.log("found?")
-        } else {
-            console.log("Not found.")
-        }
+
+        // Loop through each lesson date to see if it already exists
+        data.lessonDates.forEach(function (object, index) {
+            if (object.lessonDate === lessonDate) {
+                //This mean the date has already been picked. Only update the time
+                console.log("found.")
+            } else {
+                console.log("That date does not exist.")
+                //This means the date is completely open. Update date and time
+                const trial = await Student.findByIdAndUpdate(
+                        studentID,
+                        { $set: {lessonDates: [ {lessonDate}]} },
+                        { new: true }
+                        )
+                    console.log("trial", trial) 
+            }
+            })
+            console.log(`Element at index ${index}: ${object.lessonDate}`)
+        res.status(200).json({"message": "Everything got through."})
         // Then within the date there can be 6 times for that day.
         // Times must be nested inside of days
 
-        const trial = await Student.findByIdAndUpdate(
-            studentID,
-            { $set: {lessonDates: [ {lessonDate}]} },
-            { new: true }
-            )
-        console.log("trial", trial)
+        // const trial = await Student.findByIdAndUpdate(
+        //     studentID,
+        //     { $set: {lessonDates: [ {lessonDate}]} },
+        //     { new: true }
+        //     )
+        // console.log("trial", trial)
+        // res.status(200).json({"message": "Everything got through."})
     } catch (err) {
         next (err)
     }

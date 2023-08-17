@@ -1,16 +1,5 @@
 import mongoose from 'mongoose'
 
-const LessonTimeSchema = new mongoose.Schema({
-    type: Number,
-  });
-  
-  const LessonDaySchema = new mongoose.Schema({
-    Date: {
-      type: Date,
-    },
-    Time: [LessonTimeSchema],
-  });
-
 const StudentSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -36,7 +25,7 @@ const StudentSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
-    lessonDates: [LessonDaySchema],
+    lessonDates: [{lessonDate: {type: String, lessonTime: {type: Number}}}],
 }, { timestamps: true });
 
 export default mongoose.model("Student", StudentSchema)
