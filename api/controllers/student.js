@@ -110,8 +110,13 @@ export const bookStudent = async (req, res, next) => {
   
       if (existingLessonDate) {
         // The lessonDate already exists, update the lessonTime
-        existingLessonDate.lessonTime = lessonTime;
-        console.log("Updated lessonTime:", existingLessonDate.lessonTime);
+        existingLessonDate.lessonTimes.push(lessonTime)
+        // existingLessonDate.lessonTime = lessonTime;
+        // console.log("Updated lessonTime:", existingLessonDate.lessonTime);
+        console.log("existingLessonDate", existingLessonDate)
+
+
+
       } else {
         // The lessonDate does not exist, create a new lessonDate object
         const newLessonDate = { lessonDate: lessonDate, lessonTime: [lessonTime] };
@@ -119,8 +124,8 @@ export const bookStudent = async (req, res, next) => {
         console.log("Added new lessonDate:", newLessonDate);
       }
   
-      // Save the updated student document
-      const savedStudent = await student.save();
+      //Save the updated student document
+      const savedStudent = await dbStudentDoc.save();
       console.log("Saved Student:", savedStudent);
   
       res.status(200).json({ message: "Booking successful." });
