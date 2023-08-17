@@ -8,6 +8,7 @@ import authRoute from './routes/auth.js';
 import studentsRoute from './routes/students.js';
 import horsesRoute from './routes/horses.js';
 import teachersRoute from './routes/teachers.js';
+import bookingRoute from './routes/booking.js'
 
 // import cookieParser from 'cookie-parser';
 import cors from 'cors'
@@ -42,6 +43,7 @@ app.use('/api/auth', authRoute);
 app.use('/api/teachers', teachersRoute)
 app.use('/api/horses', horsesRoute)
 app.use('/api/students', studentsRoute);
+app.use('/api/booking', bookingRoute)
 
 
 app.use((err, req, res, next)=> {
