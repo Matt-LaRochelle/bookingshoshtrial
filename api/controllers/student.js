@@ -96,7 +96,7 @@ export const loginStudent = async (req, res, next) => {
 // Booking
 export const bookStudent = async (req, res, next) => {
     const { lessonDate, lessonTime, studentID } = req.body;
-  
+    console.log("START!!!!!!!!!!!!!!!!")
     try {
       // Retrieve the student document
       const dbStudentDoc = await Student.findById(studentID);
@@ -106,21 +106,20 @@ export const bookStudent = async (req, res, next) => {
       const existingLessonDate = dbStudentDoc.lessonDates.find(
         (date) => date.lessonDate === lessonDate
       );
-      console.log("ExistingLessonDate:", existingLessonDate)
   
       if (existingLessonDate) {
         // The lessonDate already exists, update the lessonTime
+        console.log("ExistingLessonDate:", existingLessonDate)
         existingLessonDate.lessonTimes.push(lessonTime)
-        // existingLessonDate.lessonTime = lessonTime;
-        // console.log("Updated lessonTime:", existingLessonDate.lessonTime);
-        console.log("existingLessonDate", existingLessonDate)
-
-
+        console.log("Updated existingLessonDate:", existingLessonDate)
 
       } else {
         // The lessonDate does not exist, create a new lessonDate object
-        const newLessonDate = { lessonDate: lessonDate, lessonTime: [lessonTime] };
-        student.lessonDates.push(newLessonDate);
+        const newLessonDate = { 
+            lessonDate: lessonDate, 
+            lessonTimes: [lessonTime] 
+        };
+        dbStudentDoc.lessonDates.push(newLessonDate);
         console.log("Added new lessonDate:", newLessonDate);
       }
   
