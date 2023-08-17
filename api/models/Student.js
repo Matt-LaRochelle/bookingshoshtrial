@@ -25,18 +25,54 @@ const StudentSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
-    lessonDates: [
+    lessons: [
         {
             lessonDate: {
-            type: String
-            }, 
+                type: String
+            },
             lessonTimes: [
                 {
-                    type: Number
-                }
+                    time: {
+                        type: Number
+                    },
+                    id: {
+                        type: String
+                    }
+                },
             ]
         }
     ],
+    // lessonDates: [
+    //     {
+    //         lessonDate: {
+    //         type: String
+    //         }, 
+    //         lessonTimes: [
+    //             {
+    //                 type: Number
+    //             }
+    //         ]
+    //     }
+    // ],
 }, { timestamps: true });
 
 export default mongoose.model("Student", StudentSchema)
+
+
+// {
+//     lessons: [
+//         {
+//             lessonDate: "08/20/24",
+//             lessonTimes: [
+//                 {
+//                     Time: 1, 
+//                     ID: "646bcdkhwle"
+//                 }, 
+//                 {
+//                     Time: 2, 
+//                     ID: "646kdieflkc"
+//                 }
+//             ]
+//         }
+//     ]
+// }

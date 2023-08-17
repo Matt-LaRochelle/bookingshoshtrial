@@ -95,42 +95,42 @@ export const loginStudent = async (req, res, next) => {
 
 //After some consideration, I think booking should be it's own model
 // Booking
-// export const bookStudent = async (req, res, next) => {
-//     const { lessonDate, lessonTime, studentID } = req.body;
-//     console.log("START!!!!!!!!!!!!!!!!")
-//     try {
-//       // Retrieve the student document
-//       const dbStudentDoc = await Student.findById(studentID);
-//       console.log("DB Student Data:", dbStudentDoc);
+export const bookStudent = async (req, res, next) => {
+    const { lessonDate, lessonTime, studentID } = req.body;
+    console.log("START!!!!!!!!!!!!!!!!")
+    try {
+      // Retrieve the student document
+      const dbStudentDoc = await Student.findById(studentID);
+      console.log("DB Student Data:", dbStudentDoc);
   
-//       // Check if the lessonDate already exists
-//       const existingLessonDate = dbStudentDoc.lessonDates.find(
-//         (date) => date.lessonDate === lessonDate
-//       );
+      // Check if the lessonDate already exists
+      const existingLessonDate = dbStudentDoc.lessonDates.find(
+        (date) => date.lessonDate === lessonDate
+      );
   
-//       if (existingLessonDate) {
-//         // The lessonDate already exists, update the lessonTime
-//         console.log("ExistingLessonDate:", existingLessonDate)
-//         existingLessonDate.lessonTimes.push(lessonTime)
-//         console.log("Updated existingLessonDate:", existingLessonDate)
+      if (existingLessonDate) {
+        // The lessonDate already exists, update the lessonTime
+        console.log("ExistingLessonDate:", existingLessonDate)
+        existingLessonDate.lessonTimes.push(lessonTime)
+        console.log("Updated existingLessonDate:", existingLessonDate)
 
-//       } else {
-//         // The lessonDate does not exist, create a new lessonDate object
-//         const newLessonDate = { 
-//             lessonDate: lessonDate, 
-//             lessonTimes: [lessonTime] 
-//         };
-//         dbStudentDoc.lessonDates.push(newLessonDate);
-//         console.log("Added new lessonDate:", newLessonDate);
-//       }
+      } else {
+        // The lessonDate does not exist, create a new lessonDate object
+        const newLessonDate = { 
+            lessonDate: lessonDate, 
+            lessonTimes: [lessonTime] 
+        };
+        dbStudentDoc.lessonDates.push(newLessonDate);
+        console.log("Added new lessonDate:", newLessonDate);
+      }
   
-//       //Save the updated student document
-//       const savedStudent = await dbStudentDoc.save();
-//       console.log("Saved Student:", savedStudent);
+      //Save the updated student document
+      const savedStudent = await dbStudentDoc.save();
+      console.log("Saved Student:", savedStudent);
   
-//       res.status(200).json({ message: "Booking successful." });
-//     } catch (err) {
-//       next(err);
-//     }
-//   };
+      res.status(200).json({ message: "Booking successful." });
+    } catch (err) {
+      next(err);
+    }
+  };
 
