@@ -1,5 +1,12 @@
 import express from 'express'
-import { createStudent, bookStudent, updateStudent, loginStudent, getStudent, getStudents, deleteStudent } from '../controllers/student.js' 
+import { 
+    createStudent, 
+    // bookStudent,
+    updateStudent, 
+    loginStudent, 
+    getStudent, 
+    getStudents, 
+    deleteStudent } from '../controllers/student.js' 
 //import { verifyAdmin } from a utils function
 
 const router = express.Router();
@@ -17,7 +24,7 @@ router.delete('/:id', deleteStudent)
 router.post('/login', loginStudent)
 
 //For booking a lesson from client side
-router.post('/booking', bookStudent)
+// router.post('/booking', bookStudent)
 
 //Get - Admin and Client
 router.get('/:id', getStudent)
