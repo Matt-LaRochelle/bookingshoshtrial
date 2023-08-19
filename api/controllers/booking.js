@@ -2,7 +2,7 @@ import Booking from '../models/Booking.js'
 import Student from '../models/Student.js'
 import { createError } from '../utils/error.js'
 
-//CREATE - admin
+//CREATE - admin (and client right)?
 export const createLesson = async (req, res, next) => {
     const newLesson = new Booking(req.body)
     console.log("newLesson:", newLesson)
